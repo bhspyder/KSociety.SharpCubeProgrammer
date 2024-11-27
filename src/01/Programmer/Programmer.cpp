@@ -10,7 +10,7 @@ int TryConnectStLink(int stLinkProbeIndex, int shared, debugConnectMode debugCon
     debugConnectParameters* stLinkList;
     debugConnectParameters debugParameters;
 
-    int getStlinkListNb = getStLinkEnumerationList(&stLinkList, shared);
+    int getStlinkListNb = getStLinkList(&stLinkList, shared);
 
     if (getStlinkListNb == 0)
     {
@@ -54,23 +54,6 @@ int GetStLinkList(debugConnectParameters** stLinkList, int shared)
 	{
 		return -99;
 	}
-}
-
-int GetStLinkEnumerationList(debugConnectParameters** stLinkList, int shared)
-{
-    try
-    {
-        return getStLinkEnumerationList(stLinkList, shared);
-    }
-    catch (std::exception& ex)
-    {
-        ex;
-        return -99;
-    }
-    catch (...)
-    {
-        return -99;
-    }
 }
 
 int ConnectStLink(debugConnectParameters debugParameters) 
@@ -654,11 +637,6 @@ int TzenRegression()
     return -99;
 }
 
-int GetTargetInterfaceType()
-{
-    return getTargetInterfaceType();
-}
-
 int GetCancelPointer()
 {
     return *getCancelPointer();
@@ -673,12 +651,6 @@ void FreeFileData(fileData_C* data)
 {
 	freeFileData(data);
 	return;
-}
-
-void FreeLibraryMemory(void* ptr)
-{
-    freeLibraryMemory(ptr);
-    return;
 }
 
 int Verify(fileData_C* fileData, unsigned int address)
@@ -767,17 +739,6 @@ void AutomaticMode(const wchar_t* filePath, unsigned int address, unsigned int s
 	return;
 }
 
-void SerialNumberingAutomaticMode(const wchar_t* filePath, unsigned int address, unsigned int skipErase, unsigned int verify, int isMassErase, char* obCommand, int run, int enableSerialNumbering, int serialAddress, int serialSize, char* serialInitialData)
-{
-    serialNumberingAutomaticMode(filePath, address, skipErase, verify, isMassErase, obCommand, run, enableSerialNumbering, serialAddress, serialSize, serialInitialData);
-    return;
-}
-
-int GetStorageStructure(storageStructure** deviceStorageStruct)
-{
-	return getStorageStructure(deviceStorageStruct);
-}
-
 /* -------------------------------------------------------------------------------------------- */
 /*                                  Option Bytes functions                                      */
 /* -------------------------------------------------------------------------------------------- */
@@ -790,11 +751,6 @@ int SendOptionBytesCmd(char* command)
 peripheral_C* InitOptionBytesInterface()
 {
 	return initOptionBytesInterface();
-}
-
-peripheral_C* FastRomInitOptionBytesInterface(uint16_t deviceId)
-{
-    return fastRomInitOptionBytesInterface(deviceId);
 }
 
 int ObDisplay()
@@ -816,12 +772,6 @@ void SetExternalLoaderPath(const char* path, externalLoader** externalLoaderInfo
 {
 	setExternalLoaderPath(path, externalLoaderInfo);
 	return;
-}
-
-void SetExternalLoaderOBL(const char* path, externalLoader** externalLoaderInfo)
-{
-    setExternalLoaderOBL(path, externalLoaderInfo);
-    return;
 }
 
 int GetExternalLoaders(const char* path, externalStorageInfo** externalStorageNfo)
@@ -900,11 +850,6 @@ int AntiRollBack()
 int StartFus()
 {
 	return startFus();
-}
-
-int UnlockChip()
-{
-	return unlockchip();
 }
 
 /* -------------------------------------------------------------------------------------------- */
